@@ -1,19 +1,15 @@
 from flask import Flask, render_template, request, jsonify
 import requests
-import pickle
-import numpy as np
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import seaborn as sns
-from sklearn.linear_model import LogisticRegression
-from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.preprocessing import RobustScaler
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import classification_report
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.preprocessing import RobustScaler
+import pickle
+
 
 
 
@@ -33,18 +29,19 @@ def Home():
 
 def predict():
     if request.method == "POST":
-        new_obs = np.array(request.form["new_obs"])
+        #new_obs = np.array(request.form["new_obs"].replace("'","")).reshape(1,-1)
+        new_obs = np.array( [float(i) for i in request.form["new_obs"].split(',')]).reshape(1,-1)
             
             
         scaled_new_obs = scaler.transform(new_obs)
         
-        y_proba = rf_clf.predict_proba(X)[0,1]
+        y_proba = rf_clf.predict_proba(new_obs)[0,1]
         pred = y_proba > 0.5
         
         if pred == 1:
-            return render_template('index.html',prediction_texts="Breast lump is predicted as benign.")
+            return render_template('index.html',prediction_text="Breast lump is predicted as benign {}.".format(y_proba))
         else:
-            return render_template('index.html',prediction_text="Breast lump is predicted as malignant.")
+            return render_template('index.html',prediction_text="Breast lump is predicted as malignant{}.".format(y_proba))
             
     else:
         return render_template('index.html')
