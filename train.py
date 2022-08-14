@@ -14,7 +14,7 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import classification_report
 from sklearn.ensemble import RandomForestClassifier
 import pickle
-from sklearn.feature_extraction import DictVectorizer
+
 
 
 
@@ -105,18 +105,6 @@ print(classification_report(y_test, rf_pred))
 
 
 
-
-
-
-dv = DictVectorizer()
-
-#f_out = open(output_file, "wb")
-#pickle.dump((dv,scaler,rf_clf), f_out)
-#f_out.close()
-
-
-#with open(output_file, "wb") as f_out:
-#    pickle.dump((dv,scaler,rf_clf), f_out)
 file = open("final_model.pkl", "wb")
 pickle.dump((scaler, rf_clf), file)
 
