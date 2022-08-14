@@ -29,18 +29,20 @@ def Home():
 def predict():
     if request.method == "POST":
         #new_obs = np.array(request.form["new_obs"].replace("'","")).reshape(1,-1)
-        new_obs = np.array( [float(i) for i in request.form["new_obs"].split(',')]).reshape(1,-1)
+        new_obs_array = np.array( [float(i) for i in request.form["new_obs"].split(',')]).reshape(1,-1)
             
             
-        scaled_new_obs = scaler.transform(new_obs)
+        scaled_new_obs = scaler.transform(new_obs_array)
         
-        y_proba = rf_clf.predict_proba(new_obs)[0,1]
-        pred = y_proba > 0.5
+        y_proba = rf_clf.predict_proba(scaled_new_obs)[0,1]
         
-        if pred == 1:
-            return render_template('index.html',prediction_text="Breast lump is predicted as benign {}.".format(y_proba))
+        
+        if y_proba > 0.5:
+            return render_template('index.html',prediction_text="Breast lump is predicted as malignant.")
         else:
-            return render_template('index.html',prediction_text="Breast lump is predicted as malignant{}.".format(y_proba))
+            return render_template('index.html',prediction_text="Breast lump is predicted as benign.")
+        
+        
             
     else:
         return render_template('index.html')

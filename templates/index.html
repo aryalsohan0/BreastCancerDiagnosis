@@ -12,9 +12,9 @@
     <div style="color:blue">
         <form action="{{ url_for('predict')}}" method="post">
             <h2>Diagnosis of Breast Cancer</h2>
-            <h3>Please Enter data in (1,30) shape:</h3><br><input id="second" name="new_obs" required="required">
+            <h3>Please Enter data separated by commas:</h3><br><input id="second" name="new_obs" required="required">
 			
-            <br><br><button id="sub" type="submit ">Diagnoise the lump</button>
+            <br><br><button id="sub" type="submit ">Diagnoise the Lump</button>
             <br>
 
 
@@ -24,7 +24,8 @@
 
 
 
-        <br><br><h3>{{ prediction_text }}<h3>
+        
+		<br><br><h3>{{ prediction_text }}<h3>
     </div>
 
 

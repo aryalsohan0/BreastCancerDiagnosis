@@ -47,6 +47,23 @@ Missing attribute values: none
 
 Class distribution: 357 benign, 212 malignant
 
+## Result
+
+Following results were obtained on test data by fitting three models: logistic regression, kNN and Random Forest
+
+| values   | Model         | Precision | Recall | f1-score|
+|----------|---------------|-----------|--------|---------|
+|  0       | Logistic      |   1.0     |  .91   |  .95    |
+|  1       | Logistic      |    .83    | 1.0    |  .91    |
+|  0       | kNN           |    .96    |  .96   |  .96    |
+|  1       | kNN           |    .91    |  .91   |  .91    |
+|  0       | Random Forest |    .99    |  .95   |  .97    |
+|  1       | Random Forest |    .89    |  .97   |  .93    |
+
+
+Performance of **Random Forest (f1 = 0.93)** is better than other models: logistic (f1 = .91) and kNN (f1 = .91) on test data.
+
+So we use random forest model with best hyperparameters for deployment.
 
 ### Deployment
 The model is deployed in [**heroku**](https://github.com/aryalsohan0/BreastCancerDiagnosis/deployments/activity_log?environment=breast-cancer-diagnosis1).
