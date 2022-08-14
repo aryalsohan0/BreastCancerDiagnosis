@@ -46,3 +46,8 @@ All feature values are recoded with four significant digits.
 Missing attribute values: none
 
 Class distribution: 357 benign, 212 malignant
+
+
+### Deployment
+The model is deployed in [**heroku**](https://github.com/aryalsohan0/BreastCancerDiagnosis/deployments/activity_log?environment=breast-cancer-diagnosis1).
+We can enter values of variables as comma separated and predict the type of breast lump as benign or malignant.
