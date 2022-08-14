@@ -17,7 +17,12 @@ from sklearn.preprocessing import RobustScaler
 
 app = Flask(__name__)
 
-model = pickle.load(open("final_model.pkl", "rb"))
+
+model_file = 'final_model.pkl'
+
+with open(model_file, "rb") as f_in:
+    scaler,rf_clf = pickle.load(f_in)
+    
 
 @app.route("/", methods = ["GET"])
 

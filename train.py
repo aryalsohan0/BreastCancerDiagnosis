@@ -100,12 +100,14 @@ rf_clf.fit(X_train, y_train)
 
 rf_pred = rf_clf.predict(X_test)
 
-print("\nClassification Report on Test Data")
+print("\nClassification Report on Test Data\n")
 print(classification_report(y_test, rf_pred))
 
 
+with open('model.bin', 'wb') as f_out:
+   pickle.dump((scaler, rf_clf), f_out)
+f_out.close() ## After opening any file it's nessecery to close it
 
-file = open("final_model.pkl", "wb")
-pickle.dump((scaler, rf_clf), file)
+
 
 #pip list --format=freeze > requirements.txt

@@ -15,17 +15,20 @@ from sklearn.metrics import classification_report
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import RobustScaler
 
+
+
 app = Flask(__name__)
 
-model = pickle.load(open("final_model.pkl", "rb"))
-
+with open('model.bin', 'rb') as f_in:
+    scaler, rf_clf = pickle.load(f_in)
+f_in.close()
+    
 @app.route("/", methods = ["GET"])
 
 def Home():
     return render_template('index.html')
 
 
-standard_to = scaler.transform()
 @app.route("/predict", methods=['POST'])
 
 def predict():
