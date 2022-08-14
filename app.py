@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, jsonify
 import requests
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.preprocessing import RobustScaler
 from sklearn.preprocessing import LabelEncoder
